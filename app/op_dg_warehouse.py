@@ -6,12 +6,8 @@ import requests
 import config
 from Tools.bn_dg_tools import Bn_Json_Message
 from app import BN_TOKEN, daily_file_folder
+from app.beans.bn_dg_warehouse import bn_dg_warehouse
 
-class bn_dg_warehouse(object):
-        def __init__(self,object):
-            self.number=object["number"]
-            self.id=object["id"]
-            self.name=object["name"]
 
 def bn_dg_warehouse_list():
     rst=[]

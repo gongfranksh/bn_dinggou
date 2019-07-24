@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from apps.Js.Entity.jsEntity import JsEntity
+from app.Js.Entity.jsEntity import JsEntity
 
 
 class PayMent(JsEntity):

@@ -1,8 +1,5 @@
 # -*- coding: utf-8 -*-
-import json
-import time
-
-from apps.Js.Entity.jsEntity import JsEntity
+from app.Js.Entity.jsEntity import JsEntity
 
 
 class PosOrder(JsEntity):

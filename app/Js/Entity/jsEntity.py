@@ -3,8 +3,7 @@
 import json
 import pymssql
 
-from apps.Js.Entity.Utils import MsSqlResultDataEncoder
-
+from Utils import MsSqlResultDataEncoder
 # reload(sys)
 # sys.setdefaultencoding("utf-8")
 #
@@ -105,8 +104,8 @@ class JsEntity(object):
 
     def get_remote_result_by_sql(self,sql):
         res = self.__MsSql_ExecQuery(sql)
-        json_res= json.dumps(res,cls=MsSqlResultDataEncoder)
-        return json_res
+        # json_res= json.dumps(res,cls=MsSqlResultDataEncoder)
+        return res
 
     def get_remote_list_by_sql(self,sql):
         res = self.__MsSql_ExecQuery(sql)

@@ -2,6 +2,8 @@
 
 #连接用户信息
 # userName='15221248326'
+import datetime
+
 userName='312107511'
 password='100200'
 client_id='6230830'
@@ -45,6 +47,9 @@ url_goods_inventory=url_base+'goods/goods_inventory.json'
 
 
 cache_warehouse='warehouse.json'
+cache_order='order.json'
 
+
+period={'begin':datetime.datetime.now()- datetime.timedelta(days=5),'end':datetime.datetime.now()}
 
 
