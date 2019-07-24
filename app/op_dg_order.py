@@ -58,6 +58,7 @@ def bn_dg_pull_order_daily(procdate):
                 'loadLog':'true',
                 'loadDetail':'true',
                 'loadRemark':'true',
+                "type":'1,2',
                 'beginDate':procdate.strftime('%Y-%m-%d'),
                 'endDate':procdate.strftime('%Y-%m-%d')
             }

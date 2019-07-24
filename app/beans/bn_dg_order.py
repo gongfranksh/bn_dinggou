@@ -24,5 +24,6 @@ class bn_dg_order(object):
         self.Money = object["money"]
         self.createTime = object["createTime"]
         self.modifyTime = object["modifyTime"]
+        self.type = object["type"]
 
 

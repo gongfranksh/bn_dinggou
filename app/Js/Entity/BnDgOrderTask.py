@@ -14,6 +14,14 @@ class BnDgOrderTask(JsEntity):
         rst = self.get_remote_result_by_sql(sql)
         return rst
 
+
+
+    def get_need_track_order_task(self):
+        sql = " SELECT * FROM bn_dg_order_task "
+        rst = self.get_remote_result_by_sql(sql)
+        return rst
+
+
     def sync_orders(self,orderlist):
         if len(orderlist)!=0:
             for order in orderlist:
@@ -26,6 +34,11 @@ class BnDgOrderTask(JsEntity):
 
 
     def update_dg_task(self, odb):
+        payflag = odb.payStatus
+
+        if odb.type == 2:
+            payflag = 0
+
         update_statment = """
               UPDATE dbo.bn_dg_order_task
                 SET actualMoney = {0}
@@ -42,7 +55,7 @@ class BnDgOrderTask(JsEntity):
             odb.actualMoney,
             odb.Money,
             odb.status,
-            odb.payStatus,
+            payflag,
             odb.signStatus,
             odb.outStorageStatus,
             odb.deliverStatus,
@@ -55,22 +68,28 @@ class BnDgOrderTask(JsEntity):
 
     def insert_into_dg_task(self, odb):
         # , NeedTrack, TransFlag, DoneFlag, logdate
+        #退货单补一个付款状态
+        payflag=odb.payStatus
+
+        if odb.type==2:
+            payflag=0
+
         insert_statment = """
          INSERT INTO dbo.bn_dg_order_task 
          (
              orderid, orderNum, actualMoney, order_money, status, 
              payStatus, signStatus, outStorageStatus, deliverStatus,createTime, 
-             modifyTime
+             modifyTime,type
          )
         values ({0},'{1}',{2},{3},{4},
                 {5},{6},{7},{8},'{9}',
-                '{10}'
+                '{10}',{11}
         )
         """
         insert_statment = insert_statment.format(
             odb.id, odb.orderNum, odb.actualMoney, odb.Money, odb.status,
-            odb.payStatus, odb.signStatus, odb.outStorageStatus, odb.deliverStatus, odb.createTime,
-            odb.modifyTime)
+            payflag, odb.signStatus, odb.outStorageStatus, odb.deliverStatus, odb.createTime,
+            odb.modifyTime,odb.type)
         print(insert_statment)
         self.execSql(insert_statment)
 
