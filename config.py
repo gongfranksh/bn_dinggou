@@ -26,6 +26,10 @@ url_token=url_base+'oauth2/token'
 
 #订单
 url_order=url_base+'order/pull_order.json'
+url_order_all=url_base+'order/order_all_list.json'
+url_order_detail=url_base+'order/order_detail.json'
+
+
 
 #商品类别列表
 url_goods_type=url_base+'goods/goods_type_list.json'
@@ -33,6 +37,14 @@ url_goods_type=url_base+'goods/goods_type_list.json'
 #商品
 url_goods=url_base+'goods/goods_list.json'
 
+#库存列表
+url_warehouse=url_base+'inventory/warehouse.json'
+
 #商品库存修改
 url_goods_inventory=url_base+'goods/goods_inventory.json'
+
+
+cache_warehouse='warehouse.json'
+
+
 
