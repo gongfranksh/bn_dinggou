@@ -12,13 +12,21 @@ class BnDgDeliverBills(JsEntity):
 
 
     def sync_dg_bills(self,dglist):
-        if len(dglist)!=0:
-            for bill in dglist:
-                r01=self.seek_bills_by_id(bill.id)
-                if len(r01)!=0:
-                    self.update_dg_bills(bill)
-                else:
-                    self.insert_into_dg_bills(bill)
+        if dglist is not None:
+            bill = dglist
+            r01 = self.seek_bills_by_id(bill.id)
+            if len(r01) != 0:
+                self.update_dg_bills(bill)
+            else:
+                self.insert_into_dg_bills(bill)
+
+        # if len(dglist)!=0:
+        #     for bill in dglist:
+        #         r01=self.seek_bills_by_id(bill.id)
+        #         if len(r01)!=0:
+        #             self.update_dg_bills(bill)
+        #         else:
+        #             self.insert_into_dg_bills(bill)
 
 
     def seek_bills_by_id(self,billid):

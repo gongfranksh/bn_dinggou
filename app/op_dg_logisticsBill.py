@@ -1,3 +1,4 @@
+#coding=utf-8
 import datetime
 import json
 import os
@@ -6,8 +7,10 @@ import requests
 import config
 from app import BN_TOKEN, daily_file_folder
 from app.Js.Entity.BnDgDeliverBills import BnDgDeliverBills
+from app.Js.Entity.BnDgDeliverBillsDetail import BnDgDeliverBillsDetail
 from app.Js.Entity.BnDgOrderTask import BnDgOrderTask
 from app.beans.bn_dg_deliverBills import bn_dg_deliverBills
+from app.beans.bn_dg_deliverBillsDetail import bn_dg_deliverBillsDetail
 
 
 def bn_dg_get_logisticsBill(orderNum):
@@ -33,59 +36,38 @@ def bn_dg_get_logisticsBill(orderNum):
 
 
 def proc_bn_dg_order_logictics():
+
     tasks=BnDgOrderTask()
     billtask=BnDgDeliverBills()
+    billdetailtask=BnDgDeliverBillsDetail()
+
+    #取得待处理订单
     taskslist=tasks.get_need_trans_order_task()
+
     for task in taskslist:
         ordernum=task["orderNum"]
         orderid=task["orderid"]
-        logisticlist=bn_dg_get_logisticsBill(ordernum)
-        masterlist=[]
-        deliverlist=logisticlist["deliverBills"]
-        # print('\n\n'+ordernum+'=====> orderid=====>'+str(orderid))
-        for deliver in deliverlist:
-            # branch=deliver["warehouse"]
-            # branchcode=branch["number"]
-            # branchname=branch["name"]
-            # print(str(deliver["id"])
-            #       +'=====>'+deliver["billNum"]
-            #       +'=====>'+deliver["creatorName"]
-            #       # +'=====>'+deliver["signTime"]
-            #       +'=====>'+branchcode
-            #       +'=====>'+branchname
-            #       +'=====>'+deliver["createTime"]
-            #       +'=====>'+deliver["deliverTime"]
-            #       +'=====>'+deliver["deliverTime"]
-            #       +'status=====>'+str(deliver["status"])
-            #       +'=====>'+str(deliver["money"])
-            #       )
-            # customer=deliver["customer"]
-            # print('customer'+'***'
-            #       +' code=====>'+customer["code"]
-            #       +' id=====>'+str(customer["id"])
-            #       +' companyUserName=====>'+customer["companyUserName"]
-            #       +' companyUserId=====>'+str(customer["companyUserId"])
-            #       +' realName=====>'+customer["realName"]
-            #       +' name=====>'+customer["name"]
-            #       )
 
-            # master=bn_dg_deliverBills()
+        #取得订单的发货单
+        logisticlist=bn_dg_get_logisticsBill(ordernum)
+        deliverlist=logisticlist["deliverBills"]
+        for deliver in deliverlist:
             deliver['orderid']=orderid
+            #发货单master
             master=bn_dg_deliverBills(deliver)
-            masterlist.append(master)
+            billtask.sync_dg_bills(master)
+
+            # 发货单商品明细
             orderline=deliver["logisticsBillDetails"]
             for line in orderline:
-                print(str(line["id"])
-                        + '=====>' +str(line["productCode"])
-                        + '=====>' +line["productName"]
-                        + '=====>' +str(line["mainCount"])
-                        + '=====>' +str(line["count"])
-                        + '=====>' +str(line["mainPrice"])
-                        + '=====>' +str(line["price"])
-                        + '=====>' +str(line["money"])
-                        + '=====>' +str(line["money"])
-                      )
-        billtask.sync_dg_bills(masterlist)
+                line['orderid']=orderid
+                line['orderNum']=ordernum
+                line['deliverBillid']=deliver["id"]
+                detailline=bn_dg_deliverBillsDetail(line)
+                billdetailtask.sync_dg_bills_detail(detailline)
+
+
+        # billtask.sync_dg_bills(masterlist)
 
 
 # ordernum='DH-O-20190725-248299'
