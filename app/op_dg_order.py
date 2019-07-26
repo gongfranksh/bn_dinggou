@@ -92,16 +92,6 @@ def bn_dg_pull_order_detail():
         print(e.message)
         return None
 
-def proc_order_daily():
-    for i in range((config.period['end'] - config.period['begin']).days + 1):
-        procdate = config.period['begin'] + datetime.timedelta(days=i)
-        print(procdate.strftime('%Y-%m-%d'))
-        tasksjson=bn_dg_pull_order_daily(procdate)
-        ordermodels=load_order_2_model(tasksjson)
-        ordertask=BnDgOrderTask()
-        ordertask.sync_orders(ordermodels)
-        # print(tasks)
-
 def load_order_2_model(orderlist):
     orders=[]
     for od in orderlist:
@@ -112,5 +102,8 @@ def load_order_2_model(orderlist):
 
 
 
-proc_order_daily()
+
+
+
+# proc_sync_order_daily_by_createdate()
 

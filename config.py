@@ -46,10 +46,20 @@ url_warehouse=url_base+'inventory/warehouse.json'
 url_goods_inventory=url_base+'goods/goods_inventory.json'
 
 
+#客户列表
+url_customer=url_base+'customer/customer_list.json'
+
+
+#出库发货单详情
+url_logisticsBill=url_base+'logistics/query_all_logisticsBill.json'
+
+
 cache_warehouse='warehouse.json'
 cache_order='order.json'
+cache_customer='customer_list.json'
+cache_logisticsBill='query_all_logisticsBill.json'
 
 
-period={'begin':datetime.datetime.now()- datetime.timedelta(days=5),'end':datetime.datetime.now()}
+period={'begin':datetime.datetime.now()- datetime.timedelta(days=10),'end':datetime.datetime.now()}
 
 

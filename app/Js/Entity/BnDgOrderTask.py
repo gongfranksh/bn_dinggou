@@ -17,9 +17,24 @@ class BnDgOrderTask(JsEntity):
 
 
     def get_need_track_order_task(self):
-        sql = " SELECT * FROM bn_dg_order_task "
+        sql = """
+          SELECT * FROM bn_dg_order_task  NeedTrack=0 AND type=1
+        """
         rst = self.get_remote_result_by_sql(sql)
         return rst
+
+
+
+    def get_need_trans_order_task(self):
+        sql = """
+                      SELECT * FROM 
+                      bn_dg_order_task  
+                      WHERE 
+                      DoneFlag=0 AND deliverStatus !=0 
+                  """
+        rst = self.get_remote_result_by_sql(sql)
+        return rst
+
 
 
     def sync_orders(self,orderlist):
