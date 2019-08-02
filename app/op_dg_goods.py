@@ -57,7 +57,6 @@ def bn_dg_put_goods_batch_inventory():
             access_token = {
                 'access_token': BN_TOKEN,
                 'warehouseId': warehouseId,
-                # 'productEntries': pt_list
                 'productEntries': str(pt_list)
             }
 
