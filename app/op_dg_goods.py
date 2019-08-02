@@ -68,7 +68,7 @@ def bn_dg_put_goods_batch_inventory(branchstock):
 
         obj = requests.post(url=config.url_goods_inventory_batch, params=access_token)
         rst = json.loads(obj.text)
-        print obj.url
+        # print obj.url
 
         if rst['code']==200:
             # print(rst['message'])
