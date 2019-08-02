@@ -6,6 +6,7 @@ from app.Js.Entity.BnDgOrderTask import BnDgOrderTask
 from app.op_dg_customer import bn_dg_get_customer_list, load_customer_2_model
 from app.op_dg_logisticsBill import proc_bn_dg_order_logictics
 from app.op_dg_order import bn_dg_pull_order_daily, load_order_2_model
+from app.op_dg_stock import proc_bn_dg_stock_qty
 
 
 def proc_sync_order_daily_by_createdate():
@@ -29,4 +30,6 @@ def proc_sync_order_daily_by_createdate():
 
 
 
-proc_sync_order_daily_by_createdate()
+# proc_sync_order_daily_by_createdate()
+
+proc_bn_dg_stock_qty()
