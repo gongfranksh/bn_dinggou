@@ -14,11 +14,11 @@ class BnDgStock(JsEntity):
                 LEFT JOIN branch  bh ON s.BraId=bh.braid
                 WHERE s.ProId IN (
                 '2000000171227',
+                '2000000306872',
+                '2000000337074',
                 '2000000234861',
                 '2000000234878',
-                '2000000306872',
                 '2000000306889',
-                '2000000337074',
                 '2000000337081'
                 )
                 AND isnull(bh.bn_dg_warehouseid,0)<> 0

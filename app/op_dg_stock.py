@@ -23,7 +23,8 @@ def bn_get_need_sync_stock_list_by_branch():
 
             pd={
                 'goodsCode':proid ,
-                'inventoryCount':str(item['curqty']),
+                'inventoryCount':item['curqty'],
+                # 'inventoryCount':str(item['curqty']),
             }
             pdlist.append(pd)
             # print(item)

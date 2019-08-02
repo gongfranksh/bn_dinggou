@@ -10,6 +10,10 @@ from app.op_dg_stock import proc_bn_dg_stock_qty
 
 
 def proc_sync_order_daily_by_createdate():
+    # 更新每日库存
+    proc_bn_dg_stock_qty()
+
+
     for i in range((config.period['end'] - config.period['begin']).days + 1):
         procdate = config.period['begin'] + datetime.timedelta(days=i)
         print(procdate.strftime('%Y-%m-%d'))
@@ -23,6 +27,7 @@ def proc_sync_order_daily_by_createdate():
         proc_bn_dg_order_logictics()
 
 
+
         # tasks_customer = bn_dg_get_customer_list(procdate)
         # customer_model=load_customer_2_model(tasks_customer)
         # print(customer_model)
@@ -30,6 +35,4 @@ def proc_sync_order_daily_by_createdate():
 
 
 
-# proc_sync_order_daily_by_createdate()
-
-proc_bn_dg_stock_qty()
+proc_sync_order_daily_by_createdate()

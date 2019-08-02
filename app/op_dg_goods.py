@@ -47,24 +47,28 @@ def bn_dg_put_goods_inventory():
 def bn_dg_put_goods_batch_inventory(branchstock):
     try:
         # warehouseId=3264589
-        # pt_list=[{'goodsCode': '2000000337074', 'inventoryCount': 180.00},
-        #          {'goodsCode': '2000000306889', 'inventoryCount': 118.00},
-        #          {'goodsCode': '2000000171227', 'inventoryCount': 60.00}
+        # pt_list=[{'goodsCode': '2000000337074', 'inventoryCount': 0.00},
+        #          {'goodsCode': '2000000306872', 'inventoryCount': 0.00},
+        #          {'goodsCode': '2000000171227', 'inventoryCount': 0.00}
         #          ]
-
+        # #
         warehouseId=branchstock['warehouseId']
         pt_list=branchstock['productEntries']
-        pt_list_str=str(pt_list).replace('u','')
+
+
+        pt_list_str=str(pt_list)
+        pt_list_final=pt_list_str.replace("u'","'")
         if config is not None:
             access_token = {
                 'access_token': BN_TOKEN,
                 'warehouseId': warehouseId,
-                'productEntries': str(pt_list_str)
+                # 'productEntries': str(pt_list)
+                'productEntries': pt_list_final
             }
 
         obj = requests.post(url=config.url_goods_inventory_batch, params=access_token)
         rst = json.loads(obj.text)
-        # print obj.url
+        print obj.url
 
         if rst['code']==200:
             # print(rst['message'])
@@ -80,4 +84,4 @@ def bn_dg_put_goods_batch_inventory(branchstock):
 
 # print(bn_dg_get_goods_list())
 # bn_dg_put_goods_inventory()
-# bn_dg_put_goods_batch_inventory()
+# bn_dg_put_goods_batch_inventory(11)
