@@ -1,0 +1,35 @@
+[
+  {
+    "status": 1,
+    "name": "\u4e0a\u6d77\u4ed3",
+    "number": "01002",
+    "isCustomerDefault": false,
+    "createTime": "2019-07-19 16:55:43",
+    "version": 0,
+    "address": "\u4e0a\u6d77\u5e02\u5f90\u6c47\u533a\u6f15\u6eaa\u5317\u8def333\u53f7A\u5ea7\u8d1f\u4e8c\u5c42",
+    "id": 3264589,
+    "isDefault": true
+  },
+  {
+    "status": 1,
+    "name": "\u9ed8\u8ba4\u4ed3",
+    "number": "001",
+    "isCustomerDefault": false,
+    "createTime": "2019-07-19 13:48:30",
+    "version": 0,
+    "address": "",
+    "id": 3265654,
+    "isDefault": false
+  },
+  {
+    "status": 1,
+    "name": "\u5e7f\u5dde\u4ed3",
+    "number": "01001",
+    "isCustomerDefault": false,
+    "createTime": "2019-07-19 16:55:55",
+    "version": 0,
+    "address": "",
+    "id": 3264007,
+    "isDefault": false
+  }
+]

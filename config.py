@@ -44,6 +44,7 @@ url_warehouse=url_base+'inventory/warehouse.json'
 
 #商品库存修改
 url_goods_inventory=url_base+'goods/goods_inventory.json'
+url_goods_inventory_batch=url_base+'goods/goods_inventory_batch.json'
 
 
 #客户列表
